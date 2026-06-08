@@ -4,45 +4,26 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
-
 android {
     namespace "com.superscan.app"
-    compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    compileSdk 35
+    ndkVersion "27.0.12077973"
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11
     }
 
     defaultConfig {
         applicationId "com.superscan.app"
-        // ML Kit requires minSdk 21+
-        minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
         multiDexEnabled true
     }
 
@@ -52,19 +33,15 @@ android {
             minifyEnabled false
             shrinkResources false
         }
-        debug {
-            applicationIdSuffix ".debug"
-        }
     }
 }
 
 flutter {
-    source '../..'
+    source "../.."
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.multidex:multidex:2.0.1'
-    // ML Kit text recognition bundled model (Latin)
-    implementation 'com.google.mlkit:text-recognition:16.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.0"
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation "com.google.mlkit:text-recognition:16.0.1"
 }
