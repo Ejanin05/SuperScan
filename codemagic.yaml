@@ -1,0 +1,18 @@
+workflows:
+  android-debug:
+    name: Android Debug
+    max_build_duration: 60
+    environment:
+      flutter: stable
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd superscan
+          flutter pub get
+      - name: Build Android bundle
+        script: |
+          cd superscan
+          flutter build appbundle --debug
+    artifacts:
+      - superscan/build/**/outputs/**/*.aab
+      - superscan/build/**/outputs/**/mapping.txt
