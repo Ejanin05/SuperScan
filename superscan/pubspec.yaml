@@ -16,7 +16,7 @@ dependencies:
 
   # Camera & OCR
   camera: ^0.11.0+2
-  google_mlkit_text_recognition: ^0.13.1
+  google_mlkit_text_recognition: ^0.11.0
   image_picker: ^1.1.2
 
   # Local Database
@@ -39,6 +39,9 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.11
   riverpod_generator: ^2.4.3
+
+dependency_overrides:
+  path_provider_android: ">=2.2.0 <2.3.0"
 
 flutter:
   uses-material-design: true
